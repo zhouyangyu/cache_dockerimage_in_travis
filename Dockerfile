@@ -30,7 +30,6 @@ ENV LANG en_US.UTF-8
 
 COPY . ${WORK_DIR}
 WORKDIR ${WORK_DIR}
-RUN pip2 install -r requirements.txt
 
 # Install picard 2.9.0
 RUN \
