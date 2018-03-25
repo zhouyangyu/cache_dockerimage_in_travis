@@ -1,0 +1,32 @@
+language: python
+
+sudo: false
+
+cache:
+  pip: true
+
+python:
+  - 2.7
+
+services:
+  - docker
+
+install:
+  - pip install -U tox-travis codecov
+
+script:
+  - bash test-container.sh
+
+after_success:
+  - codecov --disable search
+
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  user: <REPLACE>
+  password: <REPLACE THIS AND RUN `travis encrypt --add deploy.password`>
+  on:
+    tags: true
+    repo: zhouyangyu/cache_dockerimage_in_travis
+    python: 2.7
+    branch: master
